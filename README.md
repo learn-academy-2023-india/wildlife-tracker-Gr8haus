@@ -1,7 +1,5 @@
 # Wildlife Tracker Challenge
 The Forest Service is considering a proposal to place in conservancy a forest of virgin Douglas fir just outside of Portland, Oregon. Before they give the go ahead, they need to do an environmental impact study. They've asked you to build an API the rangers can use to report wildlife sightings.
-
-## Story 1: In order to track wildlife sightings, as a user of the API, I need to manage animals.
   ### Process
   #### Create a new Rails app on the desktop: 
     $ rails new rails-api -d postgresql -T
@@ -27,8 +25,11 @@ The Forest Service is considering a proposal to place in conservancy a forest of
   #### In a browser navigate to: 
     http://localhost:3000
 
+## Story 1: In order to track wildlife sightings, as a user of the API, I need to manage animals.
+
 ### Branch: animal-crud-actions
   git checkout -b animal-crud-actions
+
 ### Acceptance Criteria
 
 ### Create a resource for animal with the following information: common name and scientific binomial
@@ -68,6 +69,8 @@ The Forest Service is considering a proposal to place in conservancy a forest of
       render json: animal.errors
     end
   end
+
+
 ## Story 2: In order to track wildlife sightings, as a user of the API, I need to manage animal sightings.
 
 ### Branch: sighting-crud-actions

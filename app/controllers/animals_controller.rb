@@ -1,7 +1,7 @@
 class AnimalsController < ApplicationController
   def index
-    animal = Animal.all
-    render json: animal
+    animals = Animal.all
+    render json: animals
   end
   def show
     animal = Animal.find(params[:id])

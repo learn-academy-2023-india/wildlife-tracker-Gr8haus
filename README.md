@@ -18,7 +18,7 @@ The Forest Service is considering a proposal to place in conservancy a forest of
     $ bundle add rspec-rails
     $ rails generate rspec:install
   #### Generate the resource with appropriate columns and data types
-    Animal.create(common_name: "Pacific Fisher", scientific_binomial: "Pekania pennanti")
+    $ rails generate resource Animal common_name:string scientific_binomial:string
     $ rails db:migrate
   #### Begin the rails server: 
     $ rails server
@@ -33,6 +33,10 @@ The Forest Service is considering a proposal to place in conservancy a forest of
 ### Acceptance Criteria
 
 ### Create a resource for animal with the following information: common name and scientific binomial
+  <!-- $ rails generate resource Sighting animal_id:integer latitude:string longitude:string date:string
+  $ rails db:migrate 
+  Already previously done in this instance-->
+  
   <!-- Disable Authenticity Token
   skip_before_action :verify_authenticity_token
   this is needed for POSTman to be able to make requests
@@ -69,7 +73,7 @@ The Forest Service is considering a proposal to place in conservancy a forest of
       render json: animal.errors
     end
   end
-
+  
 
 ## Story 2: In order to track wildlife sightings, as a user of the API, I need to manage animal sightings.
 
@@ -78,11 +82,35 @@ The Forest Service is considering a proposal to place in conservancy a forest of
 ### Acceptance Criteria
 
 ### Create a resource for animal sightings with the following information: latitude, longitude, date
-#### Hint: An animal has_many sightings (rails g resource Sighting animal_id:integer ...)
-#### Hint: Date is written in Active Record as yyyy-mm-dd (“2022-07-28")
+  # Hint: An animal has_many sightings (rails g resource Sighting animal_id:integer ...)
+  # Hint: Date is written in Active Record as yyyy-mm-dd (“2022-07-28")
+    $ rails generate resource Sighting animal_id:integer latitude:string longitude:string date:string
+    $ rails db:migrate
 #### Can create a new animal sighting in the database
+  {
+    "latitude": "here",
+    "longitude": "there"
+    "date": "2024-01-31"
+  }
 #### Can update an existing animal sighting in the database
-#### an remove an animal sighting in the database
+  def update
+    sighting = Sighting.find(params[:id])
+    sighting.update(sightings_params)
+    if sighting.valid?
+      render json: sighting
+    else
+      render json: sighting.errors
+    end
+  end
+#### Can remove an animal sighting in the database
+  def destroy
+    sighting = Sighting.find(params[:id])
+    if sighting.destroy
+      render json: sighting
+    else
+      render json: sighting.errors
+    end
+  end
 
 ## Story 3: In order to see the wildlife sightings, as a user of the API, I need to run reports on animal sightings.
 
@@ -92,6 +120,7 @@ The Forest Service is considering a proposal to place in conservancy a forest of
 
 #### Can see one animal with all its associated sightings
 #### Hint: Checkout this example on how to include associated records
+
 #### Can see all the all sightings during a given time period
 #### Hint: Your controller can use a range to look like this:
   <!-- class SightingsController < ApplicationController

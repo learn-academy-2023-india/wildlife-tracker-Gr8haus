@@ -119,10 +119,11 @@ The Forest Service is considering a proposal to place in conservancy a forest of
 ### Acceptance Criteria
 
 #### Can see one animal with all its associated sightings
-#### Hint: Checkout this example on how to include associated records
+  # Hint: Checkout this (https://github.com/learn-co-students/js-rails-as-api-rendering-related-object-data-in-json-v-000#using-include) example on how to include associated records
+  
 
 #### Can see all the all sightings during a given time period
-#### Hint: Your controller can use a range to look like this:
+  # Hint: Your controller can use a range to look like this:
   <!-- class SightingsController < ApplicationController
     def index
       sightings = Sighting.where(date: params[:start_date]..params[:end_date])
